@@ -1,0 +1,13 @@
+[
+  { "name": "Milk 2% 1L", "base": "Milk", "store": "Walmart", "price": 1.89, "unit": "1L", "fat": "2%" },
+  { "name": "Milk 3.25% 1L", "base": "Milk", "store": "No Frills", "price": 2.19, "unit": "1L", "fat": "3.25%" },
+  { "name": "Milk 1% 2L", "base": "Milk", "store": "Superstore", "price": 3.49, "unit": "2L", "fat": "1%" },
+
+  { "name": "Butter 454g", "base": "Butter", "store": "Walmart", "price": 4.99, "unit": "454g", "fat": "80%" },
+  { "name": "Butter 227g", "base": "Butter", "store": "No Frills", "price": 2.79, "unit": "227g", "fat": "80%" },
+  { "name": "Butter 250g", "base": "Butter", "store": "Superstore", "price": 3.59, "unit": "250g", "fat": "80%" },
+
+  { "name": "Eggs Large 12ct", "base": "Eggs", "store": "Walmart", "price": 3.25, "unit": "12ct", "fat": "-" },
+  { "name": "Eggs Large 12ct", "base": "Eggs", "store": "No Frills", "price": 3.10, "unit": "12ct", "fat": "-" },
+  { "name": "Eggs Large 12ct", "base": "Eggs", "store": "Superstore", "price": 3.49, "unit": "12ct", "fat": "-" }
+]

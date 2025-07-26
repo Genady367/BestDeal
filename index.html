@@ -27,6 +27,7 @@
   </style>
 </head>
 <body>
+<<<<<<< HEAD
   <header>
     <h1>BestDeal</h1>
     <p>Find the best prices on groceries in your city.</p>
@@ -46,5 +47,60 @@
     <h2>No Frills</h2>
     <p>Discounts on canned goods and grains.</p>
   </div>
+=======
+  <h1>BestDeal — Price Comparison</h1>
+
+  <div id="container"></div>
+  <div id="best-deal-result"></div>
+
+  <script>
+    let data = [];
+    const container = document.getElementById("container");
+    const resultBlock = document.getElementById("best-deal-result");
+
+    fetch("data.json")
+      .then(response => response.json())
+      .then(json => {
+        data = json;
+        buildInterface();
+      });
+
+    function buildInterface() {
+      const grouped = {};
+      container.innerHTML = "";
+
+      data.forEach(item => {
+        if (!grouped[item.base]) grouped[item.base] = [];
+        grouped[item.base].push(item);
+      });
+
+      for (let base in grouped) {
+        const items = grouped[base];
+        const min = items.reduce((a, b) => a.price < b.price ? a : b);
+
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+          <h2>${base}</h2>
+          <p>Lowest price: $${min.price} (${min.unit}, ${min.fat}) — ${min.store}</p>
+          <button onclick="toggleDetails('${base}')">Show Details</button>
+          <div class="details" id="details-${base}">
+            ${items.map(i => `<div>${i.store}: $${i.price} — ${i.unit}, ${i.fat}</div>`).join("")}
+          </div>
+        `;
+        container.appendChild(div);
+      }
+    }
+
+    function toggleDetails(base) {
+      const el = document.getElementById("details-" + base);
+      if (el.style.display === "none" || el.style.display === "") {
+        el.style.display = "block";
+      } else {
+        el.style.display = "none";
+      }
+    }
+  </script>
+>>>>>>> 1adc9d5 (Добавлены файлы)
 </body>
 </html>
