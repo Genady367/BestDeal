@@ -1,105 +1,75 @@
-* {
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
 body {
-  background-color: #f9f7f1;
+  font-family: sans-serif;
+  background: #fff;
+  color: #000;
+  margin: 0;
   padding: 20px;
-  color: #333;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+.container {
+  max-width: 400px;
+  margin: auto;
 }
 
 h1 {
+  text-align: center;
   font-size: 24px;
-}
-
-#cartIcon {
-  font-size: 24px;
-  background: none;
-  border: none;
-}
-
-.list-section, .feedback-section {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 8px;
   margin-bottom: 20px;
 }
 
-.list-section h2, .feedback-section h2 {
-  margin-bottom: 10px;
-}
-
-#productInput {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-#productList {
-  list-style: none;
-  margin-top: 10px;
-}
-
-#productList li {
-  padding: 8px;
-  border-bottom: 1px solid #eee;
+ul { list-style: none; padding: 0; }
+li {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.actions button,
-.feedback-link button,
-#addProduct,
-#submitFeedback,
-#backToList {
+input[type="text"] {
+  flex: 1;
   padding: 10px;
-  margin: 5px 0;
-  width: 100%;
-  background-color: #1a73e8;
-  color: white;
-  border: none;
-  border-radius: 6px;
   font-size: 16px;
+}
+
+input[type="checkbox"] { margin-right: 4px; }
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  font-size: 16px;
+  background: none;
+  border: 1px solid #000;
   cursor: pointer;
 }
 
-.actions {
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
+button.inactive {
+  color: #888;
+  border-color: #ccc;
+  cursor: not-allowed;
 }
 
-.feedback-link {
-  margin-top: 10px;
+.feedback-btn { margin-top: 20px; }
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
 }
 
-textarea {
-  width: 100%;
-  margin-top: 8px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: none;
+.kb-done {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 9999;
+  background: #000;
+  color: #fff;
+  border: 0;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 8px;
 }
-
-select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
+.kb-done[hidden] { display: none; }
