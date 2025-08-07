@@ -2,116 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+  />
   <title>BestDeal</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f2f2f2;
-      margin: 0;
-      padding: 20px;
-    }
-    header {
-      background: #222;
-      color: white;
-      padding: 15px;
-      text-align: center;
-    }
-    .store {
-      background: white;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 5px;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
-  <!-- Hello BestDeal -->
+  <div class="container">
+    <h1>Shopping List</h1>
 
-  <header>
-    <h1>BestDeal</h1>
-    <p>Find the best prices on groceries in your city.</p>
-  </header>
+    <!-- сам список с чекбоксами и полем ввода в последней строке -->
+    <ul id="product-list"></ul>
 
-  <div class="store">
-    <h2>Walmart</h2>
-    <p>Lowest prices on dairy and snacks.</p>
+    <!-- пока неактивные кнопки -->
+    <button class="inactive" disabled>TOTAL $</button>
+    <button class="inactive" disabled>Specify product</button>
+    <button class="inactive" disabled>Show price</button>
+    <button class="inactive" disabled>Compare prices</button>
+    <button class="feedback-btn">Feedback</button>
   </div>
 
-  <div class="store">
-    <h2>Superstore</h2>
-    <p>Great weekly deals on fresh produce.</p>
-  </div>
+  <!-- плавающая кнопка, чтобы спрятать клавиатуру -->
+  <button id="kb-done" class="kb-done" hidden>Done</button>
 
-  <div class="store">
-    <h2>No Frills</h2>
-    <p>Discounts on canned goods and grains.</p>
-  </div>
-
-  <h1>BestDeal — Price Comparison</h1>
-  <div id="container"></div>
-  <div id="best-deal-result"></div>
-
-  <script>
-  async function loadData() {
-    const response = await fetch('data.json');
-    const items = await response.json();
-
-    const container = document.getElementById('container');
-
-    // Группировка по base (Milk, Butter и т.д.)
-    const grouped = {};
-    items.forEach(item => {
-      if (!grouped[item.base]) {
-        grouped[item.base] = [];
-      }
-      grouped[item.base].push(item);
-    });
-
-    Object.keys(grouped).forEach(base => {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'store';
-
-      // Кнопка-переключатель
-      const button = document.createElement('button');
-      button.textContent = `[+] ${base}`;
-      button.onclick = () => {
-        details.style.display = details.style.display === 'none' ? 'block' : 'none';
-        button.textContent = details.style.display === 'none' ? `[+] ${base}` : `[-] ${base}`;
-      };
-
-      // Детали (список магазинов)
-      const details = document.createElement('div');
-      details.style.display = 'none';
-
-     const minPrice = Math.min(...grouped[base].map(i => i.price));
-     const sortedItems = grouped[base].sort((a, b) => a.price - b.price);
-
-
-sortedItems.forEach(item => {
-
-  const p = document.createElement('p');
-  p.textContent = `${item.store}: ${item.name} — $${item.price} / ${item.unit} (${item.fat})`;
-
-  if (item.price === minPrice) {
-    p.style.color = 'green';
-    p.style.fontWeight = 'bold';
-  }
-
-  details.appendChild(p);
-});
-
-
-      wrapper.appendChild(button);
-      wrapper.appendChild(details);
-      container.appendChild(wrapper);
-    });
-  }
-
-  loadData();
-</script>
-
+  <script src="js/app.js"></script>
 </body>
 </html>
-
