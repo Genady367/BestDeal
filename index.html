@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
-  />
-  <title>BestDeal</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+
+    <!-- Для PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="BestDeal">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+
+    <title>BestDeal</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Shopping List</h1>
+    <div class="container">
+        <h1>Shopping List</h1>
 
-    <!-- сам список с чекбоксами и полем ввода в последней строке -->
-    <ul id="product-list"></ul>
+        <!-- Список с чекбоксами -->
+        <ul id="product-list"></ul>
 
-    <!-- пока неактивные кнопки -->
-    <button class="inactive" disabled>TOTAL $</button>
-    <button class="inactive" disabled>Specify product</button>
-    <button class="inactive" disabled>Show price</button>
-    <button class="inactive" disabled>Compare prices</button>
-    <button class="feedback-btn">Feedback</button>
-  </div>
+        <!-- Кнопки -->
+        <button class="inactive" disabled>TOTAL $</button>
+        <button class="inactive" disabled>Specify product</button>
+        <button class="inactive" disabled>Show price</button>
+        <button class="inactive" disabled>Compare prices</button>
+        <button class="feedback-btn">Feedback</button>
+    </div>
 
-  <!-- плавающая кнопка, чтобы спрятать клавиатуру -->
-  <button id="kb-done" class="kb-done" hidden>Done</button>
+    <!-- Кнопка для скрытия клавиатуры -->
+    <button id="kb-done" class="kb-done" hidden>Done</button>
 
-  <script src="js/app.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- Регистрация Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(reg => console.log('Service Worker registered', reg))
+                .catch(err => console.error('Service Worker registration failed', err));
+        }
+    </script>
 </body>
 </html>
