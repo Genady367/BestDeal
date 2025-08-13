@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BestDeal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- 🛒 Shopping List Screen -->
+  <div id="shoppingScreen">
+    <header>
+      <h1>BestDeal</h1>
+      <button id="cartIcon">🛒</button>
+    </header>
+
+    <section class="list-section">
+      <h2>Shopping List</h2>
+      <ul id="productList"></ul>
+      <input type="text" id="productInput" placeholder="Add product..." />
+      <button id="addProduct">Add</button>
+    </section>
+
+    <section class="actions">
+      <button id="showPrice">Show Price</button>
+      <button id="comparePrice">Compare Prices</button>
+    </section>
+
+    <section class="feedback-link">
+      <button id="goToFeedback">Feedback</button>
+    </section>
+  </div>
+
+  <!-- 💬 Feedback Screen -->
+  <div id="feedbackScreen" style="display:none;">
+    <header>
+      <button id="backToList">← Shopping List</button>
+    </header>
+
+    <section class="feedback-section">
+      <h2>Feedback</h2>
+      <label for="store">Store:</label>
+      <select id="store">
+        <option>Walmart</option>
+        <option>Superstore</option>
+        <option>NOFRILLS</option>
+      </select>
+
+      <label for="comment">Comment:</label>
+      <textarea id="comment" rows="4" placeholder="Write your feedback..."></textarea>
+
+      <button id="submitFeedback">Submit</button>
+    </section>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/feedback.js"></script>
+  <script src="js/app.js"></script>
+<script src="js/feedback.js"></script>
+
+<!-- Lana: Add Discount Modal -->
+<div id="add-discount" class="modal" hidden>
+  <div class="modal-content">
+    <h2>Add Discount</h2>
+    <label for="discount-photo">Photo:</label>
+    <input type="file" id="discount-photo" accept="image/*" capture="environment">
+
+    <label for="discount-store">Store:</label>
+    <select id="discount-store">
+      <option value="">Select store...</option>
+      <option>Walmart</option>
+      <option>Superstore</option>
+      <option>No Frills</option>
+      <option>Costco</option>
+      <option>Safeway</option>
+    </select>
+
+    <button id="send-discount">Send</button>
+    <button id="cancel-discount">Cancel</button>
+  </div>
+</div>
+
+<!-- Lana: Toast -->
+<div id="toast" class="toast" hidden>
+  Saved locally
+</div>
+
+</body>
+</html>
+
+</body>
+</html>

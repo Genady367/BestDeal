@@ -1,0 +1,39 @@
+@echo off
+setlocal enabledelayedexpansion
+
+REM ===== get branch =====
+for /f "tokens=*" %%b in ('git rev-parse --abbrev-ref HEAD') do set BRANCH=%%b
+
+REM ===== timestamp =====
+for /f "tokens=1-3 delims=/ " %%a in ("%date%") do set DATE=%%c-%%a-%%b
+for /f "tokens=1-2 delims=: " %%a in ("%time%") do set TIME=%%a:%%b
+if "%~1"=="" (
+  set MSG=BestDeal update — %DATE% %TIME% (%BRANCH%)
+) else (
+  set MSG=%~1
+)
+
+REM ===== guards =====
+git rev-parse --git-dir >nul 2>&1 || (echo Not a git repo & exit /b 1)
+git remote get-url origin >nul 2>&1 || (echo No 'origin' remote set & exit /b 1)
+
+REM ===== nothing to commit =====
+git diff --quiet && git diff --cached --quiet
+if %errorlevel%==0 (
+  echo No changes to commit 👍
+  exit /b 0
+)
+
+REM ===== optional: bump SW cache version (uncomment) =====
+REM if exist service-worker.js (
+REM   powershell -Command "(Get-Content service-worker.js) -replace '(CACHE_VERSION\\s*=\\s*'')[^'']+('')', '$1v'+(Get-Random)+'$2' | Set-Content service-worker.js"
+REM   echo Bumped CACHE_VERSION in service-worker.js
+REM )
+
+REM ===== commit & push =====
+git add -A
+git commit -m "%MSG%"
+git push origin %BRANCH%
+
+echo Pushed ✔  [%BRANCH%]  %MSG%
+endlocal
