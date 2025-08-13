@@ -103,3 +103,24 @@ select {
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+/* Lana: Modal + Toast (minimal) */
+.modal {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.4);
+  display: grid; place-items: center;
+  z-index: 10000; padding: 16px;
+}
+.modal[hidden]{ display:none; }
+.modal-content {
+  width: 100%; max-width: 420px;
+  background: #fff; border-radius: 12px;
+  padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  display: grid; gap: 12px;
+}
+.toast {
+  position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  background: #000; color: #fff; padding: 10px 14px;
+  font-size: 14px; border-radius: 8px; z-index: 10001;
+}
+.toast[hidden]{ display:none; }
