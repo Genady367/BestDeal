@@ -1,109 +1,75 @@
-* {
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
+/* Base */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 body {
-  background-color: #f9f7f1;
-  padding: 20px;
-  color: #333;
+  font-family: -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f6f5f1; /* теплый бежевый */
+  color: #000;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
+/* Layout */
+.container { max-width: 420px; margin: 0 auto; padding: 20px 16px 32px; }
+h1 { font-size: 32px; font-weight: 800; text-align: left; margin: 16px 0 12px; }
 
-h1 {
-  font-size: 24px;
-}
-
-#cartIcon {
-  font-size: 24px;
-  background: none;
-  border: none;
-}
-
-.list-section, .feedback-section {
-  background-color: #fff;
+/* List */
+ul { list-style: none; padding: 0; margin: 0 0 16px; }
+li { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+input[type="checkbox"] { flex: 0 0 auto; width: 22px; height: 22px; }
+input[type="text"] {
+  flex: 1 1 auto;
+  padding: 12px 14px;
+  font-size: 18px;
   border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  border-radius: 12px;
+  background: #fff;
 }
 
-.list-section h2, .feedback-section h2 {
-  margin-bottom: 10px;
-}
-
-#productInput {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
+/* Delete button inside list */
+li > button {
+  flex: 0 0 auto;
+  width: 42px;
+  padding: 8px 0;
   border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
 }
 
-#productList {
-  list-style: none;
-  margin-top: 10px;
-}
-
-#productList li {
-  padding: 8px;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-}
-
-.actions button,
-.feedback-link button,
-#addProduct,
-#submitFeedback,
-#backToList {
-  padding: 10px;
-  margin: 5px 0;
+/* Buttons — «пилюли» */
+button {
   width: 100%;
-  background-color: #1a73e8;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  padding: 14px;
+  font-size: 18px;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 999px;
   cursor: pointer;
+  margin: 10px 0 0;
+}
+button.inactive {
+  color: #8a8a8a;
+  border-color: #d0d0d0;
+  background: #eee;
+  cursor: not-allowed;
 }
 
-.actions {
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-}
+/* Feedback основной */
+.feedback-btn { margin-top: 12px; }
 
-.feedback-link {
-  margin-top: 10px;
-}
-
-textarea {
-  width: 100%;
-  margin-top: 8px;
-  padding: 10px;
+/* Floating Done button */
+.kb-done{
+  position: fixed;
+  right: 16px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+  padding: 10px 14px;
+  font-size: 16px;
+  background: #fff;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: none;
+  border-radius: 10px;
+  z-index: 9999;
 }
+.kb-done[hidden]{ display:none; }
 
-select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-/* Lana: Modal + Toast (minimal) */
+/* --- Modal + Toast (минимально) --- */
 .modal {
   position: fixed; inset: 0;
   background: rgba(0,0,0,.4);
@@ -111,16 +77,32 @@ select {
   z-index: 10000; padding: 16px;
 }
 .modal[hidden]{ display:none; }
+
 .modal-content {
   width: 100%; max-width: 420px;
-  background: #fff; border-radius: 12px;
+  background: #fff; border-radius: 14px;
   padding: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.2);
   display: grid; gap: 12px;
 }
+.modal-content h3 { margin: 0 0 8px; font-size: 20px; }
+
+.actions { display: grid; gap: 10px; }
+
+textarea, select, input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+}
+textarea { resize: none; }
+
+/* Toast */
 .toast {
   position: fixed; left: 50%; transform: translateX(-50%);
   bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
-  background: #000; color: #fff; padding: 10px 14px;
-  font-size: 14px; border-radius: 8px; z-index: 10001;
+  background: #000; color: #fff;
+  padding: 10px 14px; font-size: 14px;
+  border-radius: 10px; z-index: 10001;
 }
 .toast[hidden]{ display:none; }
