@@ -1,3 +1,5 @@
+console.log('Feedback v3 loaded');
+
 // feedback.js — drop-in modal that works with .feedback-btn and auto-builds markup
 (function () {
   const openBtn = document.querySelector('.feedback-btn');
