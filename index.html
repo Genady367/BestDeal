@@ -1,48 +1,40 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BestDeal</title>
 
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json?v=2">
-    <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="BestDeal">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png?v=2">
+  <!-- Стили: файл лежит РЯДОМ с index.html -->
+  <link rel="stylesheet" href="style.css">
 
-    <title>BestDeal</title>
-    <link rel="stylesheet" href="css/style.css?v=3">
+  <!-- PWA-манифест -->
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <div class="container">
-        <h1>Shopping List</h1>
+  <div class="container">
+    <h1>Shopping List</h1>
 
-        <!-- Список с чекбоксами -->
-        <ul id="product-list"></ul>
+    <!-- Список с чекбоксами -->
+    <ul id="product-list"></ul>
 
-        <!-- Кнопки -->
-        <button class="inactive" disabled>TOTAL $</button>
-        <button class="inactive" disabled>Specify product</button>
-        <button class="inactive" disabled>Show price</button>
-        <button class="inactive" disabled>Compare prices</button>
-        <button class="feedback-btn">Feedback</button>
+    <!-- Кнопки -->
+    <div class="buttons">
+      <button id="total" class="inactive" disabled>TOTAL $</button>
+      <button id="specify" class="inactive" disabled>Specify product</button>
+      <button id="show" class="inactive" disabled>Show price</button>
+      <button id="compare" class="inactive" disabled>Compare prices</button>
+      <button class="feedback-btn">Feedback</button>
     </div>
+  </div>
 
-    <!-- Кнопка для скрытия клавиатуры -->
-    <button id="kb-done" class="kb-done" hidden>Done</button>
+  <!-- Кнопка для скрытия клавиатуры -->
+  <button id="kb-done" class="kb-done" hidden>Done</button>
 
-    <script src="js/app.js?v=2"></script>
-    <script src="js/feedback.js?v=3"></script>
-
-    <!-- Регистрация Service Worker -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js?v=2')
-                .then(reg => console.log('Service Worker registered', reg))
-                .catch(err => console.error('Service Worker registration failed', err));
-        }
-    </script>
+  <!-- Скрипты: файлы лежат РЯДОМ с index.html -->
+  <script src="app.js"></script>
+  <script src="feedback.js"></script>
+  <!-- Service Worker пока выключен, чтобы не мешал разработке -->
+  <!-- <script src="service-worker.js"></script> -->
 </body>
 </html>
-

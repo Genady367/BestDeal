@@ -1,20 +1,48 @@
-/* Base */
-* { box-sizing: border-box; }
+/* ===== Base ===== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
 html, body { margin: 0; padding: 0; }
+
 body {
-  font-family: -apple-system, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
   background: #f6f5f1; /* теплый бежевый */
   color: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Layout */
-.container { max-width: 420px; margin: 0 auto; padding: 20px 16px 32px; }
-h1 { font-size: 32px; font-weight: 800; text-align: left; margin: 16px 0 12px; }
+/* ===== Layout ===== */
+.container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 20px 16px 32px;
+}
 
-/* List */
+h1 {
+  font-size: 32px;
+  font-weight: 800;
+  text-align: left;
+  margin: 16px 0 12px;
+}
+
+/* ===== List ===== */
 ul { list-style: none; padding: 0; margin: 0 0 16px; }
-li { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
-input[type="checkbox"] { flex: 0 0 auto; width: 22px; height: 22px; }
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+}
+
 input[type="text"] {
   flex: 1 1 auto;
   padding: 12px 14px;
@@ -22,9 +50,15 @@ input[type="text"] {
   border: 1px solid #ccc;
   border-radius: 12px;
   background: #fff;
+  outline: none;
 }
 
-/* Delete button inside list */
+input[type="text"]:focus-visible {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74,144,226,.25);
+}
+
+/* Кнопка удаления внутри списка */
 li > button {
   flex: 0 0 auto;
   width: 42px;
@@ -32,9 +66,12 @@ li > button {
   border: 1px solid #ccc;
   border-radius: 10px;
   background: #fff;
+  cursor: pointer;
 }
 
-/* Buttons — «пилюли» */
+/* ===== Buttons (pill) ===== */
+.buttons { display: grid; gap: 10px; }
+
 button {
   width: 100%;
   padding: 14px;
@@ -44,19 +81,32 @@ button {
   border-radius: 999px;
   cursor: pointer;
   margin: 10px 0 0;
+  transition: transform .06s ease-in-out, background-color .2s ease;
 }
-button.inactive {
+
+button:hover { background: #f8f8f8; }
+button:active { transform: translateY(1px); }
+
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.2);
+}
+
+/* Неактивные */
+button.inactive,
+button:disabled {
   color: #8a8a8a;
   border-color: #d0d0d0;
   background: #eee;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
-/* Feedback основной */
+/* Feedback */
 .feedback-btn { margin-top: 12px; }
 
-/* Floating Done button */
-.kb-done{
+/* ===== Floating Done button ===== */
+.kb-done {
   position: fixed;
   right: 16px;
   bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
@@ -66,17 +116,21 @@ button.inactive {
   border: 1px solid #ccc;
   border-radius: 10px;
   z-index: 9999;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
 }
-.kb-done[hidden]{ display:none; }
+.kb-done[hidden] { display: none; }
 
-/* --- Modal + Toast (минимально) --- */
+/* ===== Modal + Toast (на будущее) ===== */
+/* Примечание: текущий feedback.js использует инлайн‑стили.
+   Эти классы можно использовать, если решим перенести стили в CSS. */
+
 .modal {
   position: fixed; inset: 0;
   background: rgba(0,0,0,.4);
   display: grid; place-items: center;
   z-index: 10000; padding: 16px;
 }
-.modal[hidden]{ display:none; }
+.modal[hidden] { display: none; }
 
 .modal-content {
   width: 100%; max-width: 420px;
@@ -99,10 +153,21 @@ textarea { resize: none; }
 
 /* Toast */
 .toast {
-  position: fixed; left: 50%; transform: translateX(-50%);
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
-  background: #000; color: #fff;
-  padding: 10px 14px; font-size: 14px;
-  border-radius: 10px; z-index: 10001;
+  background: #000;
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 10px;
+  z-index: 10001;
 }
-.toast[hidden]{ display:none; }
+.toast[hidden] { display: none; }
+
+/* ===== Small screens tweaks ===== */
+@media (max-width: 360px) {
+  input[type="text"] { font-size: 16px; }
+  button { font-size: 16px; padding: 12px; }
+}
